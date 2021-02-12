@@ -3,10 +3,7 @@ package com.company;
 import com.company.custom.exception.ProductAlreadyRegisteredException;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class MontrealTradedProducts implements IMontrealTradedProducts{
 
