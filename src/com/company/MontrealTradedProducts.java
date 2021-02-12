@@ -4,6 +4,7 @@ import com.company.custom.exception.ProductAlreadyRegisteredException;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MontrealTradedProducts implements IMontrealTradedProducts{
 
@@ -27,7 +28,7 @@ product.setTradeTimestamp(LocalDate.now()) ;
     public void trade(Product product, int quantity) {
 if (productSet.containsKey(product)){
     productSet.put(product,productSet.get(product)+quantity);
-    // product is registered
+
 
 
 
@@ -37,8 +38,14 @@ if (productSet.containsKey(product)){
 
     @Override
     public int totalTradeQuantityForDay() {
+        Set<Product> keySet = productSet.keySet();
+        List filtered = keySet.stream().filter(p-> p.tradeTimestamp == LocalDate.now()).collect(Collectors.toList());
 
-        return 0;
+        int total=0;
+        for(int i =0;i<filtered.size();i++){
+         total+= productSet.get(filtered.get(i));
+        }
+        return total;
     }
 
     @Override
